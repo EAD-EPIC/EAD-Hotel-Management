@@ -18,7 +18,6 @@ public class EmployeeController {
 
     @PostMapping
     public void registerEmployee(@RequestBody Employee employee){
-        System.out.println(employee.toString());
         employeeService.addEmployee(employee);
     }
 

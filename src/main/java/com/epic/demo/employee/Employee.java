@@ -3,7 +3,7 @@ package com.epic.demo.employee;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
+@Table
 public class Employee {
 
     @Id

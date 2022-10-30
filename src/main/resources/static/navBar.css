@@ -57,7 +57,7 @@
     text-align: center;
 }
 .wrapper ul li{
-    margin: 15px 0;
+  margin-bottom: 25px;
 }
 .wrapper ul li a{
     text-decoration: none;
@@ -92,6 +92,7 @@
 }
 .wrapper ul li a:hover{
     color: #fff;
+
 }
 input[type="checkbox"]{
     display: none;
