@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 20px 10px 20px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        h2{
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .edit_btn{
+            padding: 5px 15px 5px 15px;
+            background-color: #1c87c9;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employees</h2>
+
+<table id="employees"></table>
+
+<script>
+    fetch("http://localhost:8080/employee")
+
+        .then(response => response.json())
+        .then(json => {
+
+            let li = `<tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Action</th>
+    </tr>`;
+
+            json.forEach(employee => {
+                li += `<tr>
+                <td>${employee.firstName} </td>
+                <td>${employee.lastName}</td>
+                <td>${employee.email}</td>
+                <td>${employee.gender}</td>
+                <td>${employee.address}</td>
+                <td>${employee.phone}</td>
+                 <td>
+            <a href="/" class="edit_btn">
+                Edit
+            </a>
+        </td>
+            </tr>`;
+            });
+
+            document.getElementById("employees").innerHTML = li;
+        });
+</script>
+</body>
+</html>

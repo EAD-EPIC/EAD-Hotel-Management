@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <style>
+    .button {
+      background-color: #1c87c9;
+      border: none;
+      color: white;
+      padding: 6px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px 0px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+  </style>
+</head>
+<body>
+<div>
+  <div>
+    <!--Navigation bar-->
+    <div id="header">
+    </div>
+    <script>
+      $(function(){
+        $("#header").load("header.html");
+        $("#EmployeeTable").load("EmployeeTable.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
+  </div>
+  <div>
+    <h1 style="margin-left: 20px">Employee</h1>
+    <a href="AddEmployee.html" class="button">+ADD</a>
+  </div>
+  <div id="EmployeeTable"></div>
+  <div>
+
+  </div>
+</div>
+</body>
+</html>

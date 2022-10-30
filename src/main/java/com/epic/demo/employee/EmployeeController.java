@@ -18,6 +18,7 @@ public class EmployeeController {
 
     @PostMapping
     public void registerEmployee(@RequestBody Employee employee){
+        System.out.println(employee.toString());
         employeeService.addEmployee(employee);
     }
 
@@ -37,9 +38,10 @@ public class EmployeeController {
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String address,
-            @RequestParam(required = false) String email
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String phone
             ){
-        employeeService.updateEmployee(employeeId,firstName,lastName,address,email);
+        employeeService.updateEmployee(employeeId,firstName,lastName,address,email,phone);
     }
 
 
