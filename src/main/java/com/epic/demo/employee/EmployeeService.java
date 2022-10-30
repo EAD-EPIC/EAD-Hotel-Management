@@ -40,7 +40,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void updateEmployee(Long employeeId, String firstName, String lastName, String address,String email) {
+    public void updateEmployee(Long employeeId, String firstName, String lastName, String address,String email,String phone) {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new IllegalStateException(
                         "Student with id "+employeeId+" does nt exist"
@@ -61,6 +61,12 @@ public class EmployeeService {
                 address.length()>0 &&
                 !Objects.equals(employee.getAddress(),address)){
             employee.setAddress(address);
+        }
+
+        if (phone != null &&
+                phone.length()>0 &&
+                !Objects.equals(employee.getPhone(),phone)){
+            employee.setPhone(phone);
         }
 
         if (email != null &&

@@ -3,7 +3,7 @@ package com.epic.demo.employee;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
+@Table
 public class Employee {
 
     @Id
@@ -22,25 +22,28 @@ public class Employee {
     private String email;
     private String gender;
     private String address;
+    private String phone;
 
     public Employee() {
     }
 
-    public Employee(Long employeeId, String firstName, String lastName, String email, String gender, String address) {
+    public Employee(Long employeeId, String firstName, String lastName, String email, String gender, String address,String phone) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
         this.address = address;
+        this.phone = phone;
     }
 
-    public Employee(String firstName, String lastName, String email, String gender, String address) {
+    public Employee(String firstName, String lastName, String email, String gender, String address,String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
         this.address = address;
+        this.phone = phone;
     }
 
     public Long getEmployeeId() {
@@ -89,5 +92,26 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

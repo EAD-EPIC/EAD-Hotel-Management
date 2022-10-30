@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="Employee.js"></script>
+  <style>
+    .button {
+      background-color: #1c87c9;
+      border: none;
+      color: white;
+      padding: 6px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px 0px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px 20px 10px 20px;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    h2{
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+    .edit_btn{
+      padding: 5px 15px 5px 15px;
+      background-color: #1c87c9;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .delete_btn{
+      padding: 5px 15px 5px 15px;
+      background-color: #ee1d1d;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div>
+    <!--Navigation bar-->
+    <div id="header">
+    </div>
+    <script>
+      $(function(){
+        $("#header").load("header.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
+  </div>
+  <div>
+    <h1 style="margin-left: 20px">Employee</h1>
+    <a href="AddEmployee.html" class="button">+ADD</a>
+  </div>
+  <h2>Employees</h2>
+
+  <table id="employees"></table>
+</div>
+</body>
+</html>
