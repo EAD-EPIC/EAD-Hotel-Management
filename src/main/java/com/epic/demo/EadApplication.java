@@ -1,7 +1,9 @@
 package com.epic.demo;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class EadApplication {
@@ -9,4 +11,8 @@ public class EadApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EadApplication.class, args);
 	}
+//	@Bean
+//	public ModelMapper modelMapper(){
+//		return new ModelMapper();
+//	}
 }

@@ -23,7 +23,7 @@ fetch("http://localhost:8080/guest")
                 <td>${guest.mobile}</td>
                 
                  <td>
-                         <button class="btn btn-primary" onclick="editGuest(${guest.id})">Edit</button>
+                         <button class="edit_btn" onclick= "editGuest(${guest.id});window.location.href='updateGuest.html'">Edit</button>
                         <button class="btn btn-success" onclick="deleteGuest(${guest.id})">Delete</button>
         </td>
             </tr>`;
@@ -43,4 +43,12 @@ function deleteGuest(id){
 }
 function editGuest(id){
     console.log(id);
+
+    fetch('http://localhost:8080/guest/${id}?', {
+        method: 'PUT',
+        redirect: 'follow'
+    })
+        .then(res => res.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 }

@@ -23,5 +23,3 @@ public interface GuestRepository
     Optional<Guest> findGuestByEmail(String email);
 }
 
-
-
