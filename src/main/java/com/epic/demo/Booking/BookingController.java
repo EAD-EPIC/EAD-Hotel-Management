@@ -1,7 +1,10 @@
 package com.epic.demo.Booking;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,10 +26,24 @@ public class BookingController {
         return bookingService.getGuest();
     }
 
-    @PutMapping
-    public Booking updateGuest(@RequestBody Booking booking) {
-        return bookingService.updateGuest(booking);
+//    @PutMapping
+//    public Booking updateGuest(@RequestBody Booking booking) {
+//        return bookingService.updateGuest(booking);
+//
+//    }
 
+
+    @PutMapping(path = "{guestId}")
+    public void updateBooking(
+            @PathVariable("guestId") long guestId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer adults,
+            @RequestParam(required = false) Integer kids,
+            @RequestParam(required = false) String roomType,
+            @RequestParam(required = false) Date checkIn,
+            @RequestParam(required = false) Date checkOut
+            ){
+        bookingService.updateBooking(guestId,name,adults,kids,roomType,checkOut,checkIn);
     }
 
     @DeleteMapping("/{guestId}")
