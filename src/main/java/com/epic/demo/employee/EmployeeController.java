@@ -40,6 +40,7 @@ public class EmployeeController {
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String phone
             ){
+        System.out.println(firstName);
         employeeService.updateEmployee(employeeId,firstName,lastName,address,email,phone);
     }
 

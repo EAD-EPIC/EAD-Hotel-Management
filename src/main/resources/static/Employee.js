@@ -24,7 +24,7 @@
                 <td>${employee.address}</td>
                 <td>${employee.phone}</td>
                  <td>
-                         <button class="edit_btn" onclick="editEmployee(${employee.employeeId})">Edit</button>
+                         <a class="edit_btn" href="updateEmployee.html" onclick="editEmployee(${employee.employeeId})">Edit</a>
                         <button class="delete_btn" onclick="deleteEmployee(${employee.employeeId})">Delete</button>
         </td>
             </tr>`;
@@ -43,5 +43,25 @@
         window.location.reload();
     }
     function editEmployee(empId){
-        console.log(empId);
+        window.Empid = empId;
     }
+ function updateEmployee(e){
+
+        const firstName = document.getElementById("fName").value;
+        const lastName = document.getElementById("lName").value;
+        const address = document.getElementById("addr").value;
+        const phoneNumber = document.getElementById("phoneNum").value;
+     let raw = "";
+
+     let requestOptions = {
+         method: 'PUT',
+         body: raw,
+         redirect: 'follow'
+     };
+
+     fetch(`http://localhost:8080/employee/16?firstName=${firstName}&lastName=${lastName}&address=${address}&phone=${phoneNumber}`, requestOptions)
+         .then(response => response.text())
+         .then(result => console.log(result))
+         .catch(error => console.log('error', error));
+ }
+
