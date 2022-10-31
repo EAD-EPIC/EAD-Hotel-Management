@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Booking</title>
+    <style>
+        .button {
+            background-color: #1c87c9;
+            border: none;
+            color: white;
+            padding: 6px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px 0px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 97%;
+            margin: 10px 20px 10px 20px;
+        }
+
+        td, th {
+            border: 2px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        h2{
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .edit_btn{
+            padding: 5px 20px 5px 20px;
+            background-color: #22ba0f;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+        .delete_btn{
+            padding: 5px 15px 5px 15px;
+            background-color: #ee1d1d;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="testbox">
+    <form class="form" >
+        <div class="colums">
+            <div class="item">
+                <label for="name">Name<span>*</span></label>
+                <input id="name" type="text" name="name" required/>
+            </div>
+            <div class="item">
+                <label for="adults">Adults<span>*</span></label>
+                <input id="adults" type="number" name="adults" required/>
+            </div>
+            <div class="item">
+                <label for="kids">Kids<span>*</span></label>
+                <input id="kids" type="number" name="kids" required/>
+                <p style="color: red" id="emailError"></p>
+            </div>
+            <div class="item">
+                <label for="roomType">Room Type<span>*</span></label>
+                <input id="roomType" type="text" name="roomType" required/>
+            </div>
+            <div class=" item">
+                <label for="checkIn">Check In<span>*</span></label>
+                <input id="checkIn" type="date"   name="checkIn" required/>
+            </div>
+            <div class=" item">
+                <label for="checkOut">Check Out<span>*</span></label>
+                <input id="checkOut" type="date"   name="checkOut" required/>
+            </div>
+        </div>
+
+        <div class="btn-block">
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const formEl = document.querySelector('.form');
+    formEl.addEventListener('submit',event=>{
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        fetch('http://localhost:8080/booking',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => {res.json();
+            if (res.status != 500){
+                formEl.reset();
+                const emailErr = document.getElementById('emailError');
+                emailErr.innerHTML = '';
+            }
+            else {
+                const emailErr = document.getElementById('emailError');
+                emailErr.innerHTML = 'Email Already exist';
+            }})
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    })
+
+</script>
+</body>
+</html>

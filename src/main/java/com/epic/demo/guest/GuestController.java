@@ -58,6 +58,7 @@ import java.util.List;
 //}
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "guest")
 public class GuestController {
 

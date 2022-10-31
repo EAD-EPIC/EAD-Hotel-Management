@@ -1,5 +1,4 @@
 fetch("http://localhost:8080/booking")
-
     .then(response => response.json())
     .then(json => {
 
@@ -20,18 +19,20 @@ fetch("http://localhost:8080/booking")
                 <td>${booking.name} </td>
                 <td>${booking.adults}</td>
                 <td>${booking.kids}</td>
-                 <td>${booking.roomType}</td>
+                <td>${booking.roomType}</td>
                 <td>${booking.checkIn}</td>
                 <td>${booking.checkOut}</td>
                
                  <td>
-                         <button class="edit_btn" onclick="editBooking(${booking.guestId})">Edit</button>
-                        <button class="delete_btn" onclick="deleteBooking(${booking.guestId})">Delete</button>
-        </td>
-            </tr>`;
+                    <button class="edit_btn" onclick="editBooking(${booking.guestId})">Edit</button>
+                    <a href="bookingUpdate.html" class="edit_btn" onclick="editBooking(${booking.guestId})">Edit</a>
+                    <button class="delete_btn" onclick="deleteBooking(${booking.guestId})">Delete</button>
+                 </td>
+        </tr>`;
         });
         document.getElementById("booking").innerHTML = li;
     });
+
 function deleteBooking(guestId){
     console.log(guestId);
     fetch(`http://localhost:8080/booking/${guestId}`, {
@@ -42,6 +43,14 @@ function deleteBooking(guestId){
 
     window.location.reload();
 }
+
 function editBooking(guestId){
     console.log(guestId);
+    fetch(`http://localhost:8080/booking/${guestId}`, {
+        method: 'PUT',
+    })
+        .then(res => res.text()) // or res.json()
+        .then(res => console.log(res))
+
+    window.location.reload();
 }

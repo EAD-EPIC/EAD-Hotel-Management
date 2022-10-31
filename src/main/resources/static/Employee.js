@@ -24,7 +24,7 @@
                 <td>${employee.address}</td>
                 <td>${employee.phone}</td>
                  <td>
-                         <button class="edit_btn" onclick="editEmployee(${employee.employeeId})">Edit</button>
+                        <button class="edit_btn" onclick="editEmployee(${employee.employeeId})">Edit</button>
                         <button class="delete_btn" onclick="deleteEmployee(${employee.employeeId})">Delete</button>
         </td>
             </tr>`;

@@ -16,14 +16,14 @@ public class Booking {
 
     private String roomType;
 
-    private int adults;
+    private Integer adults;
 
-    private int kids;
+    private Integer kids;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date checkIn;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date checkOut;
 
     public Booking() {
