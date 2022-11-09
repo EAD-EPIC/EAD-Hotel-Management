@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +19,9 @@ public class BookingController {
 
     @PostMapping
     public Booking addGuest (@RequestBody Booking booking){
-
         return bookingService.saveGuest(booking);
     }
+
     @GetMapping
     public List<Booking> findAllGust(){
         return bookingService.getGuest();
@@ -32,7 +33,6 @@ public class BookingController {
 //
 //    }
 
-
     @PutMapping(path = "{guestId}")
     public void updateBooking(
             @PathVariable("guestId") long guestId,
@@ -40,11 +40,12 @@ public class BookingController {
             @RequestParam(required = false) Integer adults,
             @RequestParam(required = false) Integer kids,
             @RequestParam(required = false) String roomType,
-            @RequestParam(required = false) Date checkIn,
-            @RequestParam(required = false) Date checkOut
-            ){
+            @RequestParam(required = false) String checkIn,
+            @RequestParam(required = false) String checkOut
+            ) throws ParseException {
         System.out.println("At controller "+name);
         bookingService.updateBooking(guestId,name,adults,kids,roomType,checkOut,checkIn);
+
     }
 
     @DeleteMapping("/{guestId}")

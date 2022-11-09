@@ -1,4 +1,9 @@
-fetch("http://localhost:8080/booking")
+let requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+};
+
+fetch("http://localhost:8080/booking", requestOptions)
 
     .then(response => response.json())
     .then(json => {
@@ -24,10 +29,10 @@ fetch("http://localhost:8080/booking")
                 <td>${booking.checkIn}</td>
                 <td>${booking.checkOut}</td>
                
-                 <td>
-                         <button class="edit_btn" onclick="editBooking(${booking.guestId})">Edit</button>
-                        <button class="delete_btn" onclick="deleteBooking(${booking.guestId})">Delete</button>
-        </td>
+                <td>
+                    <a class="edit_btn" href="UpdateBooking.html" onclick="editBooking(${booking.guestId})">Edit</a>
+                    <button class="delete_btn" onclick="deleteBooking(${booking.guestId})">Delete</button>
+                </td>
             </tr>`;
         });
         document.getElementById("booking").innerHTML = li;
@@ -42,6 +47,8 @@ function deleteBooking(guestId){
 
     window.location.reload();
 }
+
 function editBooking(guestId){
+    sessionStorage.setItem("guestId",guestId);
     console.log(guestId);
 }
