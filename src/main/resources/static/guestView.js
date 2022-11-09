@@ -1,4 +1,9 @@
-fetch("http://localhost:8080/guest")
+let requstOptions = {
+    method: 'GET',
+    redirect: 'follow'
+};
+
+fetch("http://localhost:8080/guest", requstOptions)
 
     .then(response => response.json())
     .then(json => {
@@ -10,6 +15,7 @@ fetch("http://localhost:8080/guest")
         <th>Last Name</th>
         <th>Country</th>
         <th>Mobile</th>
+         <th>Password</th>
         <th>Action</th>
     </tr>`;
 
@@ -21,10 +27,10 @@ fetch("http://localhost:8080/guest")
                 <td>${guest.lastName}</td>          
                 <td>${guest.country}</td>
                 <td>${guest.mobile}</td>
-                
+                <td>${guest.password}</td>
                  <td>
-                         <button class="btn btn-primary" onclick="editGuest(${guest.id})">Edit</button>
-                        <button class="btn btn-success" onclick="deleteGuest(${guest.id})">Delete</button>
+                          <a class="edit_btn" href="updateGuest.html" onclick="editGuest(${guest.id})">Edit</a>
+                        <button class="delete_btn" onclick="deleteGuest(${guest.id})">Delete</button>
         </td>
             </tr>`;
         });
@@ -42,5 +48,27 @@ function deleteGuest(id){
     window.location.reload();
 }
 function editGuest(id){
-    console.log(id);
+    sessionStorage.setItem("id",id);
 }
+//
+// function updateGuest(e){
+//
+//     const firstName = document.getElementById("firstName").value;
+//     const lastName = document.getElementById("lastName").value;
+//     const country = document.getElementById("country").value;
+//     const Mobile = document.getElementById("Mobile").value;
+//     const Password = document.getElementById("Password").value;
+//     let raw = "";
+//
+//     let requestOptions = {
+//         method: 'PUT',
+//         body: raw,
+//         redirect: 'follow'
+//     };
+//
+//     fetch(`http://localhost:8080/guest/16?firstName=${firstName}&lastName=${lastName}&country=${country}&Mobile=${Mobile}&Password=${Password}`, requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+// }
+//
