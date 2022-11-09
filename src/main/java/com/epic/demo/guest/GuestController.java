@@ -90,9 +90,11 @@ public class GuestController {
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String country,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String mobile
+            @RequestParam(required = false) String mobile,
+            @RequestParam(required = false) String password
     ){
-        guestService.updateGuest(id,firstName,lastName,country,email,mobile);
+        System.out.println(firstName);
+        guestService.updateGuest(id,firstName,lastName,country,email,mobile, password);
     }
 
 

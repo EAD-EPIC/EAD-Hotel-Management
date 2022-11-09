@@ -75,7 +75,7 @@ public class GuestService {
     public void deleteGuest(Integer id) {
         boolean exist = guestRepository.existsById(id);
         if(!exist){
-            throw new IllegalStateException("Student with id "+id+" does nt exist");
+            throw new IllegalStateException("Guest with id "+id+" does nt exist");
         }
         guestRepository.deleteById(id);
     }
@@ -86,10 +86,10 @@ public class GuestService {
 //    }
 
     @Transactional
-    public void updateGuest(Integer id, String firstName, String lastName, String country,String email,String mobile) {
+    public void updateGuest(Integer id, String firstName, String lastName, String country, String email, String mobile, String password) {
         Guest guest = guestRepository.findById(id)
                 .orElseThrow(()-> new IllegalStateException(
-                        "Student with id "+id+" does nt exist"
+                        "Guest with id "+id+" does nt exist"
                 ));
 
         if (firstName != null &&
@@ -115,6 +115,12 @@ public class GuestService {
             guest.setMobile(mobile);
         }
 
+        if (password != null &&
+                password.length()>0 &&
+                !Objects.equals(guest.getPassword(),password)){
+            guest.setPassword(password);
+        }
+
         if (email != null &&
                 email.length()>0 &&
                 !Objects.equals(guest.getEmail(),email)){
@@ -125,4 +131,6 @@ public class GuestService {
             guest.setEmail(email);
         }
     }
+
+
 }
