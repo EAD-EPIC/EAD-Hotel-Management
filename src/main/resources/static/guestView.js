@@ -15,7 +15,7 @@ fetch("http://localhost:8080/guest", requstOptions)
         <th>Last Name</th>
         <th>Country</th>
         <th>Mobile</th>
-         <th>Password</th>
+<!--         <th>Password</th>-->
         <th>Action</th>
     </tr>`;
 
@@ -27,11 +27,10 @@ fetch("http://localhost:8080/guest", requstOptions)
                 <td>${guest.lastName}</td>          
                 <td>${guest.country}</td>
                 <td>${guest.mobile}</td>
-                <td>${guest.password}</td>
-                 <td>
-                          <a class="edit_btn" href="updateGuest.html" onclick="editGuest(${guest.id})">Edit</a>
-                        <button class="delete_btn" onclick="deleteGuest(${guest.id})">Delete</button>
-        </td>
+                <td>
+                    <a class="edit_btn" href="updateGuest.html" onclick="editGuest(${guest.id})">Edit</a>
+                    <button class="delete_btn" onclick="deleteGuest(${guest.id})">Delete</button>
+                </td>
             </tr>`;
         });
         document.getElementById("guestTable").innerHTML = li;
