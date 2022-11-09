@@ -86,7 +86,7 @@ public class GuestService {
 //    }
 
     @Transactional
-    public void updateGuest(Integer id, String firstName, String lastName, String country, String email, String mobile) {
+    public void updateGuest(Integer id, String firstName, String lastName, String country, String email, String mobile, String password) {
         Guest guest = guestRepository.findById(id)
                 .orElseThrow(()-> new IllegalStateException(
                         "Guest with id "+id+" does nt exist"
@@ -114,12 +114,12 @@ public class GuestService {
                 !Objects.equals(guest.getMobile(),mobile)){
             guest.setMobile(mobile);
         }
-//
-//        if (password != null &&
-//                password.length()>0 &&
-//                !Objects.equals(guest.getPassword(),password)){
-//            guest.setPassword(password);
-//        }
+
+        if (password != null &&
+                password.length()>0 &&
+                !Objects.equals(guest.getPassword(),password)){
+            guest.setPassword(password);
+        }
 
         if (email != null &&
                 email.length()>0 &&
