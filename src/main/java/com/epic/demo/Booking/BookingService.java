@@ -35,12 +35,12 @@ public class BookingService {
     Booking existingBooking = bookingRepository.findById(guestId)
             .orElseThrow(()-> new IllegalStateException(
             "Booking with ID" + guestId + "does not exist"));
-        existingBooking.setName(existingBooking.getName());
-        existingBooking.setAdults(existingBooking.getAdults());
-        existingBooking.setKids(existingBooking.getKids());
-        existingBooking.setCheckIn(existingBooking.getCheckIn());
-        existingBooking.setCheckOut(existingBooking.getCheckOut());
-        existingBooking.setRoomType(existingBooking.getRoomType());
+        existingBooking.setName(name);
+        existingBooking.setAdults(adults);
+        existingBooking.setKids(kids);
+        existingBooking.setCheckIn(checkIn);
+        existingBooking.setCheckOut(checkOut);
+        existingBooking.setRoomType(roomType);
 }
 
 }

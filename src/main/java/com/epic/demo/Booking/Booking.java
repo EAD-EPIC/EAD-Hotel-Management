@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Booking")
+@Table
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,21 +16,21 @@ public class Booking {
 
     private String roomType;
 
-    private int adults;
+    private Integer adults;
 
-    private int kids;
+    private Integer kids;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date checkIn;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date checkOut;
 
     public Booking() {
 
     }
 
-    public Booking(Long guestId, String name , String roomType , int adults, int kids , Date checkIn , Date checkOut){
+    public Booking(Long guestId, String name , String roomType , Integer adults, Integer kids , Date checkIn , Date checkOut){
         this.guestId = guestId;
         this.name = name;
         this.roomType = roomType;
@@ -39,7 +39,7 @@ public class Booking {
         this.checkIn = checkIn;
         this.checkOut =checkOut;
     }
-    public Booking(String name , String roomType , int adults, int kids , Date checkIn , Date checkOut){
+    public Booking(String name , String roomType , Integer adults, Integer kids , Date checkIn , Date checkOut){
         this.name = name;
         this.roomType = roomType;
         this.adults = adults;
