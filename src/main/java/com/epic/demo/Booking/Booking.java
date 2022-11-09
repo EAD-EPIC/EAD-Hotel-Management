@@ -1,7 +1,6 @@
 package com.epic.demo.Booking;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,10 +19,16 @@ public class Booking {
 
     private Integer kids;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private Date checkIn;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date checkIn;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private Date checkOut;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date checkOut;
 
     public Booking() {
