@@ -1,9 +1,14 @@
- fetch("http://localhost:8080/employee")
+let requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
 
-    .then(response => response.json())
-    .then(json => {
+    fetch("http://localhost:8080/employee",requestOptions)
 
-    let li = `<tr>
+        .then(response => response.json())
+        .then(json => {
+
+            let li = `<tr>
         <th>Employee Id</th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -14,8 +19,8 @@
         <th>Action</th>
     </tr>`;
 
-    json.forEach(employee => {
-    li += `<tr>
+            json.forEach(employee => {
+                li += `<tr>
                 <td>${employee.employeeId} </td>
                 <td>${employee.firstName} </td>
                 <td>${employee.lastName}</td>
@@ -24,16 +29,16 @@
                 <td>${employee.address}</td>
                 <td>${employee.phone}</td>
                  <td>
-                         <a class="edit_btn" href="updateEmployee.html" onclick="editEmployee(${employee.employeeId})">Edit</a>
+                           <a class="edit_btn" href="updateEmployee.html" onclick="editEmployee(${employee.employeeId})">Edit</a>
                         <button class="delete_btn" onclick="deleteEmployee(${employee.employeeId})">Delete</button>
         </td>
             </tr>`;
-});
-    document.getElementById("employees").innerHTML = li;
-});
-    function deleteEmployee(empId){
+            });
+            document.getElementById("employees").innerHTML = li;
+        });
 
-        console.log(empId);
+function deleteEmployee(empId){
+
         fetch(`http://localhost:8080/employee/${empId}`, {
             method: 'DELETE',
         })
@@ -43,25 +48,6 @@
         window.location.reload();
     }
     function editEmployee(empId){
-        window.Empid = empId;
+        sessionStorage.setItem("empId",empId);
     }
- function updateEmployee(e){
-
-        const firstName = document.getElementById("fName").value;
-        const lastName = document.getElementById("lName").value;
-        const address = document.getElementById("addr").value;
-        const phoneNumber = document.getElementById("phoneNum").value;
-     let raw = "";
-
-     let requestOptions = {
-         method: 'PUT',
-         body: raw,
-         redirect: 'follow'
-     };
-
-     fetch(`http://localhost:8080/employee/16?firstName=${firstName}&lastName=${lastName}&address=${address}&phone=${phoneNumber}`, requestOptions)
-         .then(response => response.text())
-         .then(result => console.log(result))
-         .catch(error => console.log('error', error));
- }
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>New Employee Registration</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="Employee.js"></script>
     <style>
         html, body {
             min-height: 100%;
@@ -171,34 +171,56 @@
     <a href="Employee.html" style="padding: 15px;background-color: #1c87c9;border-radius: 25px;text-decoration: none;color: white;font-weight: bold;margin-left: 20px"><</a>
 </div>
 <div class="testbox">
-    <form class="form" >
+    <form class="form">
         <div class="banner">
             <h1>Update Employee</h1>
         </div>
         <div class="colums">
             <div class="item">
-                <label for="fName"> First Name</label>
-                <input id="fName" type="text" name="ftName"/>
+                <label for="firstName"> First Name</label>
+                <input id="firstName" type="text" name="firstName"/>
             </div>
             <div class="item">
-                <label for="lName"> Last Name</label>
-                <input id="lName" type="text" name="lName"/>
+                <label for="lastName"> Last Name</label>
+                <input id="lastName" type="text" name="lastName"/>
             </div>
             <div class="item">
-                <label for="addr">Address</label>
-                <input id="addr" type="text" name="addr" />
+                <label for="address">Address</label>
+                <input id="address" type="text" name="address" />
             </div>
             <div class=" item">
-                <label for="phoneNum">Phone</label>
-                <input id="phoneNum" type="tel" name="phoneNum"/>
+                <label for="phoneNumber">Phone</label>
+                <input id="phoneNumber" type="tel" name="phoneNumber"/>
             </div>
         </div>
         <div class="btn-block">
-            <button type="submit" onclick="updateEmployee()">Update</button>
+            <button type="submit">Update</button>
         </div>
     </form>
 </div>
+<script>
+    let empId = sessionStorage.getItem("empId");
+    const formEl = document.querySelector('.form');
 
+   formEl.addEventListener('submit',event=>{
+       event.preventDefault();
+
+       const formData = new FormData(formEl);
+       const data = Object.fromEntries(formData);
+       fetch(`http://localhost:8080/employee/${empId}?firstName=${data.firstName}&lastName=${data.lastName}&address=${data.address}&phone=${data.phoneNumber}`,{
+           method:'PUT',
+           headers:{
+               'Content-Type':'application/json'
+           },
+           body: ""
+       }).then(res =>
+       {
+           console.log(res.json());
+           formEl.reset();
+       })
+           .then(data => console.log(data))
+           .catch(error => console.log(error));
+   })
 </script>
 </body>
 </html>

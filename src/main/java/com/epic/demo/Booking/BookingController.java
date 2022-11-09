@@ -43,6 +43,7 @@ public class BookingController {
             @RequestParam(required = false) Date checkIn,
             @RequestParam(required = false) Date checkOut
             ){
+        System.out.println("At controller "+name);
         bookingService.updateBooking(guestId,name,adults,kids,roomType,checkOut,checkIn);
     }
 
